@@ -1,0 +1,88 @@
+git status
+git init repo
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+git config --list
+git add .
+git commit -m "Initial commit"
+git status
+git clone https://github.com/user/repo.git
+git remote add origin https://github.com/user/repo.git
+git push -u origin main
+git branch feature-branch
+git checkout feature-branch
+git checkout -b new-branch
+git diff main feature-branch
+git log
+
+git checkout main
+git merge feature-branch
+git push origin feature-branch
+git merge feature-branch
+git branch -d feature-branch (local)
+git push origin --delete feature-branch (remote)
+
+Resolving merge conflicts
+git merge feature-branch
+git add <file>
+git commit -m "Resolved merge conflict"
+
+Add a new remote
+git remote add upstream https://github.com/original/repository.git
+View remote
+git remote -v
+remove remote
+git remote remove upstream
+change remote url
+git remote set-url origin https://github.com/new/repository.git
+push to multiple main
+git push upstream main
+push to main
+git push origin main
+
+
+Pull request and collaboration
+git push origin feature-branch
+git fetch upstream
+git merge upstream/main
+
+page deployment
+git checkout -b gh-pages
+git push origin gh-pages
+https://your-username.github.io/repository-name/
+
+Git Rebase
+Git rebase is a command used to reapply commits from one branch onto another, creating a cleaner and more linear history.
+Instead of merging, which creates a merge commit, rebase moves your changes on top of the latest commit from another branch.
+git checkout feature-branch
+git rebase main
+git rebase --abort
+
+cherry pick
+git cherry-pick <commit-hash>
+git cherry-pick <commit-hash1> <commit-hash2>
+git cherry-pick --abort
+
+Stashing and applying
+git stash
+git stash list
+git stash pop
+git stash apply
+git stash clear
+
+Reset, Restore, Revert Differences
+git reset --hard HEAD~1  # Removes last commit
+git reset --soft HEAD~1  # Keeps changes but removes commit
+git reset --mixed HEAD~1 # Removes commit and unstages changes
+
+git restore <file>  # Restore file from last commit
+git restore --staged <file>  # Unstage a file
+
+git revert <commit-hash>
+
+Rebase vs. Merge Workflow Comparison
+git checkout main
+git merge feature-branch
+git checkout feature-branch
+git rebase main
+
