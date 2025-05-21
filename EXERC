@@ -1,0 +1,335 @@
+WEBPROJECT
+mkdir WebProject
+cd WebProject
+git init
+
+# Configure Git
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+
+# Create .gitignore file
+echo ".DS_Store" >> .gitignore
+echo "node_modules/" >> .gitignore
+git add .gitignore
+git commit -m "Added .gitignore"
+
+# Connect to remote repository
+git remote add origin https://github.com/user/web-project.git
+git push -u origin main
+
+WORK ON FEATURE BRANCH
+git checkout -b feature-login
+git add login.html
+git commit -m "Add basic login form in login.html"
+echo 'body { font-family: Arial, sans-serif; text-align: center; } 
+form { border: 1px solid #ccc; padding: 20px; display: inline-block; }' > style.css
+git add style.css
+git commit -m "Add CSS styles for login form"
+
+Merge feature-login into development (Explicit Merge)
+git checkout -b development
+git merge --no-ff feature-login -m "Merge feature-login into development"
+git push origin development
+
+Create and Merge hotfix Branch
+git checkout -b hotfix-login-typo
+sed -i 's/Usrename/Username/g' login.html  # Assuming the typo was "Usrename"
+git add login.html
+git commit -m "Fix typo in login.html"
+git checkout development
+git merge hotfix-login-typo
+git push origin development
+
+ Tag, Push, and Checkout for Deployment Testing
+git tag -a release-1.0 -m "Version 1.0 Release"
+git push origin --tags
+mkdir WebProject-deploy
+cd WebProject-deploy
+git clone --branch release-1.0 https://github.com/user/web-project.git .
+
+
+# Initialize a Git repository and configure Git
+mkdir WebProject
+cd WebProject
+git init
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+
+# Set up .gitignore
+echo ".DS_Store" >> .gitignore
+echo "node_modules/" >> .gitignore
+echo "bin/" >> .gitignore
+echo "obj/" >> .gitignore
+git add .gitignore
+git commit -m "Added .gitignore"
+
+# Connect to remote repository
+git remote add origin https://github.com/yourusername/api-dev.git
+git push -u origin main
+
+# Create and switch to 'api-feature' branch
+git checkout -b api-feature
+
+# Create and commit api.js
+echo "console.log('API Initialized');" > api.js
+git add api.js
+git commit -m "Add basic API functionality in api.js"
+
+# Create and commit config.json
+echo '{ "version": "1.0", "env": "development" }' > config.json
+git add config.json
+git commit -m "Add config settings in config.json"
+
+# Push api-feature branch to remote
+git push origin api-feature
+
+# Merge feature-login into development with an explicit merge commit
+git checkout -b development
+git merge --no-ff feature-login -m "Merge feature-login into development"
+git push origin development
+
+# Fix a typo in login.html using a hotfix branch
+git checkout -b hotfix-login-typo
+sed -i 's/Usrename/Username/g' login.html
+git add login.html
+git commit -m "Fix typo in login.html"
+
+# Merge hotfix-login-typo using fast-forward
+git checkout development
+git merge hotfix-login-typo
+git push origin development
+
+# Set up GitHub Actions for CI pipeline
+mkdir -p .github/workflows
+echo 'name: CI Build
+git commit -m "Add GitHub Actions CI pipeline"
+git push origin api-feature
+
+# Create a pull request and review process
+# (Done on GitHub interface; simulate requested changes)
+echo "console.log('API is Running');" > api.js
+git add api.js
+git commit -m "Updated API output message based on review"
+git push origin api-feature
+
+# Merge api-feature into main
+git checkout main
+git merge --no-ff api-feature -m "Merge api-feature into main"
+git push origin main
+
+# Tagging and pushing to remote repository
+git tag -a v2.0 -m "Release version 2.0"
+git push origin v2.0
+
+# Clone the release tag for deployment testing
+mkdir WebProject-deploy
+cd WebProject-deploy
+git clone --branch v2.0 https://github.com/yourusername/api-dev.git .
+
+# Rollback to previous version v1.5
+git checkout v1.5
+git reset --hard v1.5
+git push origin main --force
+
+# Step 1: Initialize Repository and Setup
+mkdir SampleProject
+cd SampleProject
+git init
+
+# Configure Git User Details
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+
+# Create README file
+echo "# SampleProject" > README.md
+git add README.md
+git commit -m "Initial commit with README"
+
+# Connect to Remote Repository
+git remote add origin https://github.com/yourusername/sampleproject.git
+git push -u origin main
+
+# Step 2: Create and Work on Feature Branch
+git checkout -b feature-enhancement
+
+# Modify app.js (Create if doesn't exist)
+echo "console.log('Feature Enhancement!');" > app.js
+git add app.js
+git commit -m "Add feature enhancement in app.js"
+
+# Merge feature-enhancement into main
+git checkout main
+git merge --no-ff feature-enhancement -m "Merge feature-enhancement into main"
+git push origin main
+
+# Step 3: Revert Last Commit on Main Branch
+git log --oneline  # Identify the last commit hash
+git revert HEAD  # Revert the last commit (creates a new commit undoing changes)
+
+# Push the reverted state to remote
+git push origin main
+
+
+# Task 1: Setup and Configuration
+mkdir ProjectRepo
+cd ProjectRepo
+git init
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+
+# Configure .gitignore to ignore .log files
+echo "*.log" >> .gitignore
+git add .gitignore
+git commit -m "Add .gitignore to ignore .log files"
+
+# Connect to remote repository
+git remote add origin https://github.com/username/ProjectRepo.git
+git push -u origin main
+
+# Task 2: Branch Management and Updates
+git checkout -b development
+echo "Initial development notes" > dev_notes.txt
+git add dev_notes.txt
+git commit -m "Add initial development notes"
+git push origin development
+
+# Task 3: Handling Merges and Conflicts
+echo "More detailed development notes." >> dev_notes.txt
+git commit -am "Update development notes"
+
+# Switch to main and modify dev_notes.txt
+git checkout main
+echo "Updates from main branch." >> dev_notes.txt
+git commit -am "Main branch updates"
+
+# Attempt merging development into main and resolve conflicts
+git checkout main
+git merge development
+git mergetool  # Resolve conflicts manually if necessary
+git commit -am "Resolve merge conflicts"
+
+# Task 4: Rollback and Revert Changes
+echo "Erroneous change in dev_notes.txt" >> dev_notes.txt
+git commit -am "Introduce an error"
+
+# Identify commit ID and revert
+git log --oneline
+git revert HEAD
+git push origin main
+
+# Exercise - 2: Repository Setup and Committing
+mkdir ProjectX
+cd ProjectX
+git init
+echo "# ProjectX - Objectives" > README.md
+git add README.md
+git commit -m "Initial commit with project objectives"
+
+# Task 2: Branch Creation and File Manipulation
+git checkout -b development
+echo "Development guidelines" > dev_notes.txt
+git add dev_notes.txt
+git commit -m "Add development notes"
+
+# Task 3: Advanced Branch Management
+git checkout -b feature1
+echo "Feature 1 implementation details" >> dev_notes.txt
+git commit -am "Add Feature 1 details"
+git checkout development
+git merge feature1
+
+# Task 4: Stashing and Retrieving
+echo "Uncommitted changes in dev_notes.txt" >> dev_notes.txt
+git stash save "Temporary dev_notes update"
+git checkout main
+echo "How to contribute" >> README.md
+git commit -am "Update README.md with contribution guidelines"
+git checkout development
+git stash pop
+
+# Exercise - 3: Branch Management and Pull Requests
+git clone https://github.com/your-username/repository-name.git
+cd repository-name
+git checkout -b bug-fix
+sed -i 's/teh/the/g' error_log.txt  # Correct spelling errors
+git add error_log.txt
+git commit -m "Correct spelling and formatting errors in error_log.txt"
+git push origin bug-fix
+
+# Create Pull Request via GitHub
+
+# Exercise - 4: Stash and Advanced Git Features
+git checkout feature-x
+echo "Notes on new feature" > new_feature.md
+git stash save "Work on new_feature.md"
+git checkout development
+echo "Urgent fix applied" > urgent_fix.txt
+git add urgent_fix.txt
+git commit -m "Apply urgent fix"
+git checkout feature-x
+git stash pop
+
+
+# Step 1: Initialize Repository and Configuration
+mkdir MyNewProject
+cd MyNewProject
+git init
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+
+# Configure .gitignore to ignore .tmp files
+echo "*.tmp" >> .gitignore
+git add .gitignore
+git commit -m "Added .gitignore for .tmp files"
+
+# Add Remote Repository
+git remote add origin https://github.com/yourusername/NewRepo.git
+git push -u origin main
+
+# Step 2: Create a Fix-Bug Branch and Add Files
+git checkout -b fix-bug
+echo "Bug fix details" > bugfix.txt
+git add bugfix.txt
+git commit -m "Add bugfix.txt for tracking bugs"
+
+# Create Docs Directory and Add Files
+mkdir docs
+echo "Project Documentation" > docs/readme.md
+echo "Changelog details" > docs/changelog.md
+echo "Contribution guidelines" > docs/contribute.md
+
+git add docs/
+git commit -m "Added documentation files"
+git push origin fix-bug
+
+# Step 3: Merge Conflict Handling
+git checkout main
+echo "Conflicting Change in bugfix.txt" >> bugfix.txt
+git commit -am "Updated bugfix.txt on main branch"
+
+git checkout fix-bug
+echo "Another conflicting change in bugfix.txt" >> bugfix.txt
+git commit -am "Updated bugfix.txt on fix-bug branch"
+
+# Merge fix-bug into main (conflict expected)
+git checkout main
+git merge fix-bug
+
+# Resolve merge conflicts manually, then:
+git add bugfix.txt
+git commit -m "Resolved merge conflicts and merged fix-bug into main"
+
+# Step 4: Fork and Branch Setup for GitHub Submission
+# Fork the repository on GitHub manually, then:
+git clone https://github.com/yourusername/NewRepo.git
+
+# Create a branch with your USN
+git checkout -b USN-12345
+echo "Answers for CIE2 retest" > USN_CIE2.txt
+git add USN_CIE2.txt
+git commit -m "Added CIE2 answers"
+git push origin USN-12345
+
+# Step 5: Clone Forked Repository and Verify
+git clone https://github.com/yourusername/NewRepo.git
+ls -la  # Verify cloned contents
