@@ -1,0 +1,134 @@
+### 🔹 Git Basics & Setup
+
+# Git installation (platform-specific)
+# Windows: Use Git Bash installer from https://git-scm.com
+# macOS (with Homebrew):
+brew install git
+# Ubuntu:
+sudo apt install git
+
+# Configuration
+ git config --global user.name "Your Name"
+ git config --global user.email "your.email@example.com"
+
+# Initialize a Git repository
+git init
+
+# Add files to staging area
+git add filename       # single file
+git add .              # all files
+
+# Commit changes
+git commit -m "Your commit message"
+
+# View status of working directory
+git status
+
+# Create and manage repositories (on GitHub)
+# - Create a repo on GitHub and use:
+git remote add origin https://github.com/user/repo.git
+git push -u origin main
+
+
+### 🔹 Branching & Collaboration
+
+# Create a new branch
+git branch feature-branch
+
+# Switch to branch
+git checkout feature-branch
+# or (create and switch)
+git checkout -b feature-branch
+
+# Compare branches
+git diff main..feature-branch
+
+# Merge feature branch into main
+git checkout main
+git merge feature-branch
+
+# Resolve merge conflicts: Open conflicting file, fix manually, then:
+git add conflicted-file
+git commit -m "Resolved conflict"
+
+# Delete branches
+git branch -d feature-branch          # local
+git push origin --delete feature-branch  # remote
+
+
+### 🔹 Working with Remote Repositories
+
+# Fork: Done on GitHub website
+# Clone a repo
+git clone https://github.com/user/repo.git
+
+# Add a new remote
+git remote add upstream https://github.com/original/repo.git
+
+# Remove a remote
+git remote remove upstream
+
+# Push to remote
+git push origin branch-name
+
+# Push to multiple remotes (optional)
+git remote add backup https://gitlab.com/user/repo.git
+git push backup branch-name
+
+# Pull request: Create on GitHub after pushing branch
+
+# GitHub Pages deployment
+# In repo → Settings → Pages → Deploy from `main` or `gh-pages`
+
+
+### 🔹 .gitignore
+
+# Common .gitignore entries
+# Web projects
+node_modules/
+.env
+dist/
+
+# Python projects
+__pycache__/
+.DS_Store
+
+
+### 🔹 Version Control Best Practices
+
+# Meaningful commit messages
+# Example:
+git commit -m "Fix: handle null check in login component"
+
+# Rewriting history (interactive rebase)
+git rebase -i HEAD~3    # edit last 3 commits
+
+# Cherry-pick a commit from another branch
+git checkout main
+git cherry-pick <commit-hash>
+
+
+### 🔹 Advanced Git Operations
+
+# Stash and apply changes
+
+git stash          # saves uncommitted changes
+git stash apply    # reapplies them
+
+git stash list     # shows stash entries
+git stash drop     # deletes stash entry
+
+# Reset, restore, revert
+
+git reset --hard HEAD~1       # hard reset to one commit before
+git restore filename           # restore specific file from last commit
+git revert <commit-hash>      # revert a single commit safely
+
+# Rebase vs Merge (workflow)
+# Merge: Keeps full history
+git checkout main
+git merge feature
+
+# Rebase: Rewrites history linearly
+git checkout feature
+git rebase main
